@@ -1,3 +1,5 @@
+# link : https://airfox1.tistory.com/2?category=1118519
+
 import time, win32con, win32api, win32gui, ctypes #pip3 install pypiwin32
 from pywinauto import clipboard #pip3 install pywinauto , pandas
 import pandas as pd # 가져온 채팅내용 DF로 쓸거라서
@@ -150,7 +152,6 @@ kakao_sendtext(text)
 print(hwndMain)
 print(hwndEdit)
 print(hwndListControl)
-
 
 # #조합키, 본문을 클립보드에 복사 ( ctl + A , C )
 PostKeyEx(hwndListControl, ord('A'), [w.VK_CONTROL], False)
