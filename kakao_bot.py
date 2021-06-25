@@ -230,6 +230,29 @@ def bot_return3():
 
 # <-- 내용입력 --> , 매 n시 뉴스 헤드라인 rss ,, 매일 언급 종목 분석 ,, 매일 대화량 순위분석 ,, 긴급포착 ,, 금일 장마감 (코스피,코스닥 량)
 
+def count_talk():
+    ttext = kakao_copy()
+    a = ttext.split('\r\n')  # \r\n 으로 스플릿 __ 대화내용 인용의 경우 \r 때문에 해당안됨
+    df = pd.DataFrame(a)  # DF 으로 바꾸기
+    
+    df[0] = df[0].str.replace('\[([\S\s]+)\] \[(오전|오후)([0-9:\s]+)\] ', '')  # 정규식으로 채팅내용만 남기기
+    print(df[0])
+
+    '''
+    if df.iloc[-2, 0] != clst: #신규채팅이 있는 경우
+        print("신규채팅 발생")
+        df1 = df.iloc[cls+1 : , 0]   # 최근 채팅내용만 남김
+
+        found = df1[ df1.str.contains(chat_command1) ]    # 명령어 여부 카운트  # str.find
+        found2 = df1[ df1.str.contains(chat_command2) ]    # 명령어 여부 카운트
+
+        if 1 <= int(found.count()):
+            bot_return1()
+        if 1 <= int(found2.count()):
+            bot_return2()
+
+    return df.index[-2], df.iloc[-2, 0]  
+    '''  
 
 
 #########################################################################################################
@@ -268,6 +291,10 @@ cls, clst = chat_last_save()  # 초기설정 _ 마지막채팅 저장
 
 print("[run...]")
 start_time = time.time()
+
+count_talk()
+
+'''
 while True:
     cls, clst = chat_chek_command(cls, clst)  # 커멘드 체크
     now_time = time.time()
@@ -283,4 +310,4 @@ while True:
         time.sleep(1)
 
     time.sleep( int(refresh_cycle) )
-
+'''
