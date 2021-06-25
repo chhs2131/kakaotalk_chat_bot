@@ -231,11 +231,12 @@ def bot_return3():
 # <-- 내용입력 --> , 매 n시 뉴스 헤드라인 rss ,, 매일 언급 종목 분석 ,, 매일 대화량 순위분석 ,, 긴급포착 ,, 금일 장마감 (코스피,코스닥 량)
 
 def count_talk():
+    print("============== sssssssssssss ====================")
     ttext = kakao_copy()
     a = ttext.split('\r\n')  # \r\n 으로 스플릿 __ 대화내용 인용의 경우 \r 때문에 해당안됨
     df = pd.DataFrame(a)  # DF 으로 바꾸기
     
-    df[0] = df[0].str.replace('\[([\S\s]+)\] \[(오전|오후)([0-9:\s]+)\] ', '')  # 정규식으로 채팅내용만 남기기
+    df[0] = df[0].str.findall('\[[^\]]*\] \[')  # 사용자 이름만 남기기
     print(df[0])
 
     '''
